@@ -1,0 +1,87 @@
+{% extends "baseAdmin.html.twig" %}
+
+{% block userA %}colorlib-active{% endblock %}
+
+{% block style %}
+{% endblock %}
+{% block title %}Liste des user{% endblock %}
+{% block contenu %}
+ <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading" id="top" style="background-image: url({{ asset( 'images/banniere_patron.jpeg' ) }});">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content">
+                        <h2>Les utilisateurs</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+	          <div class="row">
+            <div class="col-md-12 grid-margin stretch-cardA">
+              <div class="cardA">
+                <div class="cardA-body">
+                  <p class="cardA-title">Advanced Table</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                      <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                        <table id="example" class="display expandable-table dataTable " style="width:100%">
+                          <thead>
+                            <tr role="row">
+                              <th>Nom</th>
+                              <th>Prenom</th>
+                              <th>Business type</th>
+                            </tr>
+                          </thead>
+                          {% for u in pUser %}
+                          <tbody>
+                            <tr class="even shown">
+                              <td><a class="lien" href="{{ path('profil', { 'id': u.id }) }}">{{ u.nom }}</a></td>
+                              <td>{{ u.prenom}}</td>
+                              <td class=" details-control"> </td>
+                            </tr>
+                            <table cellpadding="5">
+                            <tbody>
+                              <tr class="expanded-row">
+                                {% for p in u.likes %}
+                                <td colspan="3" class="row-bg">
+                                  <a class="lien" href="{{ path('patronConsulter', { 'id': p.patrons.id }) }}">
+                                    <div class="card">
+                                      <div class="photoCard">
+                                        <img src="{{ asset( p.patrons.image ) }}" alt="image">
+                                      </div>
+                                      <div class="descrCard">
+                                        {{ p.patrons.nom }} </br>
+                                  </a>
+                                        <a href="{{ path('patronLike', { 'id': p.patrons.id }) }}" class="btn btn-link lien js-like">
+                                          <span class="js-likes">{{ p.patrons.likes.count }}</span>
+                                          <span class="js-label">Like</span>
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </td>
+                                {% else %}
+                                  Aucun patron aimé
+                                {% endfor %}
+                            </tr>
+                            </tbody>
+                          </table>
+                              {% endfor %}
+                      </tbody>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                
+              </div>
+            </div>
+        </div>
+
+
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ patron.nom }}{% endblock %}
+
+{% block style %}
+table{
+    height:0px !important;
+}
+td{
+    min-width : 100px !important;
+    border-bottom : dotted 1px #634d4d;
+    padding-bottom : 5px;
+    padding-top : 5px;
+}
+
+
+{% endblock %}
+
+{% block contenu %}
+
+ <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading" id="top" style="background-image: url({{ asset( 'images/banniere_patron.jpeg' ) }});">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content">
+                        <h2>{{ patron.nom }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+<div class="container">
+    <div class="row">
+
+        <div class="descr-single-product">
+
+            <p id="principal">
+                <img class ="imgPatron" src="{{ asset( patron.image ) }}" alt="photo du patron" />
+            </p>
+            <table class="descrPatron">
+                <tr>
+                    <td class="soustitre">Genre : </td>
+                    <td><a class="lien2" href="{{ path('genreConsulter', { 'id': patron.genre.id }) }}">{{patron.genre.nom}}</a></td>
+                </tr>
+                
+                <tr>
+                    <td class="soustitre">Catégorie : </td> 
+                    <td><a class="lien2" href="{{ path('categorieConsulter', { 'id': patron.categorie.id }) }}">{{patron.categorie.nom}}</a></td>    
+                </tr>
+
+                <tr>
+                    <td class="soustitre">Livre / marque : </td>
+                    <td><a class="lien2" href="{{ path('livreConsulter', { 'id': patron.livre.id }) }}">{{patron.livre.nom}}</a></td>
+                </tr>
+
+                {% if patron.maTaille == null %}
+                {% else %}
+                    <tr> 
+                        <td class="soustitre">Ma taille : </td>
+                        <td> {{patron.maTaille}} </td>
+                    </tr>
+                {% endif %}
+
+                {% if patron.metrage == null %}
+                {% else %}
+                <tr> 
+                    <td class="soustitre">Métrage minimum (en cm) : </td>
+                    <td> {{ patron.metrage }} </td>
+                </tr>
+                {% endif %}
+
+                {% if patron.tissu == null %}
+                {% else %}
+                <tr> 
+                    <td class="soustitre">Tissu conseillé : </td>
+                    <td>{{ patron.tissu }}</td>
+                </tr>
+                {% endif %}
+
+                <tr> 
+                    <td class="soustitre">Accessoire(s) : </td>
+                    <td>
+                        {% for u in patron.utilise %}
+                            {{ u.accessoire.nom }}
+                        </br>
+                        {% endfor %}
+                        {{ patron.accessoireProv }}
+                    </td>
+                </tr>
+
+                <tr> 
+                    <td class="soustitre">Remarque : </td>
+                    <td>{{ patron.remarque }}</td>
+                </tr>
+                
+
+            </table>
+            <a href="{{ path('patronLike', { 'id': patron.id }) }}" class="btn btn-link lien js-like">
+            <span class="js-likes">{{ patron.likes.count }}</span>
+            {% if app.user and patron.isLikedByUser(app.user) %}
+                <i class="fa-solid fa-heart"></i>
+            {% else %}
+                <i class="fa-regular fa-heart"></i>
+            {% endif %}
+            <span class="js-label">Like</span>
+        </a>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') and app.user.email == "charlottelau50@gmail.com" or app.user.email == "adminE5@admin.com"%}
+        <a class="bouton" href="{{ path('patronModifier', { 'id': patron.id }) }}"> Modifier </a>
+        {% endif %}
+        </div>
+        <div id="tit-crea">Création(s) du patron : </div>
+        {% for c in patron.creations %}
+            <a class="lien" href="{{ path('creationConsulter', { 'id': c.id }) }}">
+                <div class="card">
+                    <div class="photoCard">
+                        <img src="{{ asset( c.image ) }}" alt="image">
+                    </div>
+                    <div class="descrCard">
+                        {{ c.date|date("d/m/Y") }}
+                    </div>
+                </div>
+            </a>
+                            
+        {% endfor %}
+
+
+
+    </div>
+</div>
+{% endblock %}

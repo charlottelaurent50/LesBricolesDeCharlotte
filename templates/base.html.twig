@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <script src="https://kit.fontawesome.com/eafbd7d31f.js" crossorigin="anonymous"></script>
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/templatemo-hexashop.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/owl-carousel.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
+
+    <link rel="icon" ype="image/png" href="{{ asset('images/fleur.png') }}" />
+    <style type="text/css">{% block style %}{% endblock %}</style>
+<!--
+
+TemplateMo 571 Hexashop
+
+https://templatemo.com/tm-571-hexashop
+
+-->
+    </head>
+    
+    <body>
+    
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+    
+    
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="{{ path('route_accueil') }}" class="logo">
+                            <img src="{{ asset('images/logo.png') }}">
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="navB">
+                            <li class="scroll-to-section"><a href="{{ path('route_accueil') }}" class={% block accueil %}{% endblock %}>Accueil</a></li>
+                            <li class="scroll-to-section"><a href="{{ path('livreLister') }}" class={% block livre %}{% endblock %}>Livres / Marques</a></li>
+                            <li class="scroll-to-section"><a href="{{ path('categorieLister') }}" class={% block categorie %}{% endblock %}>Catégorie</a></li>
+                            <li class="scroll-to-section"><a href="{{ path('genreLister') }}" class={% block genre %}{% endblock %}>Genre</a></li>
+                            <li class="scroll-to-section"><a href="{{ path('creationLister') }}" class={% block creation %}{% endblock %}>Création</a></li>
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <li class="submenu">
+                                        <a href="javascript:;" class={% block compte %}{% endblock %}> <i class="fa-regular fa-user"></i>  </a>
+                                        <ul>
+                                        {% if app.user.email == "charlottelau50@gmail.com" or app.user.email == "adminE5@admin.com" %}
+                                            <li><a href="{{ path('profil', { 'id': app.user.id }) }}">Profil</a></li>
+                                            <li><a href="{{ path('admin') }}">Page admin</a></li>
+                                            <li><a href="{{ path('app_logout') }}">Deconnexion</a></li>
+                                        {% else %}
+                                            <li><a href="{{ path('profil', { 'id': app.user.id }) }}">Profil</a></li>
+                                            <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                                        {% endif %}
+                                        </ul>
+                                    </li>
+                            {% else %}
+                            <li class="scroll-to-section"><a href="{{ path('app_login') }}"><i class="fa-solid fa-power-off"></i></a></li>
+                            {% endif %}
+                            
+                            <!-- <li class="submenu">
+                                <a href="javascript:;"> Profile </a>
+                                <ul>
+                                    <li><a href="#">Features Page 1</a></li>
+                                    <li><a href="#">Features Page 2</a></li>
+                                    <li><a href="#">Features Page 3</a></li>
+                                    <li><a rel="nofollow" href="https://templatemo.com/page/4" target="_blank">Template Page 4</a></li>
+                                </ul>
+                            </li>-->
+                        </ul>        
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    {% block contenu %} 
+    
+    {% endblock %}
+
+       <!-- ***** Footer Start ***** -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="first-item">
+                        <div class="logo">
+                            <img src="{{ asset('images/logo.png') }}" alt="hexashop ecommerce templatemo">
+                        </div>
+                        <ul style=" color: #FAF1E8;">
+                            <li>1 La haute faverie, 50370 La Chaise Baudouin</li>
+                            <li>bricolesdecharlotte@gmail.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <h4>Les filtres</h4>
+                    <ul>
+                        <li><a href="{{ path('livreLister') }}">Livres / Marques</a></li>
+                        <li><a href="{{ path('categorieLister') }}">Catégorie</a></li>
+                        <li><a href="{{ path('genreLister') }}">Genre</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h4>Liens utiles</h4>
+                    <ul>
+                        <li><a href="{{ path('route_accueil') }}">Accueil</a></li>
+                        <!-- <li><a href="#">About Us</a></li>
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Contact Us</a></li> -->
+                    </ul>
+                </div>
+                <div class="col-lg-12">
+                    <div class="under-footer">
+                        <p>Copyright © 2022 Les bricoles de Charlotte. All Rights Reserved. 
+                        <ul>
+                            <li><a href="https://www.facebook.com/bricoles.de.charlotte"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://www.instagram.com/lesbricolesdecharlotte/"><i class="fa fa-instagram
+                            "></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+
+    <!-- jQuery -->
+    <script src="{{ asset('js/jquery-2.1.0.min.js') }}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{{ asset('js/popper.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+    <!-- Plugins -->
+    <script src="{{ asset('js/owl-carousel.js') }}"></script>
+    <script src="{{ asset('js/accordions.js') }}"></script>
+    <script src="{{ asset('js/datepicker.js') }}"></script>
+    <script src="{{ asset('js/scrollreveal.min.js') }}"></script>
+    <script src="{{ asset('js/waypoints.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('js/imgfix.min.js') }}"></script> 
+    <script src="{{ asset('js/slick.js') }}"></script> 
+    <script src="{{ asset('js/lightbox.js') }}"></script> 
+    <script src="{{ asset('js/isotope.js') }}"></script> 
+    
+    <!-- Global Init -->
+    <script src="{{ asset('js/custom.js') }}"></script>
+
+    <script>
+
+        $(function() {
+            var selectedClass = "";
+            $("p").click(function(){
+            selectedClass = $(this).attr("data-rel");
+            $("#portfolio").fadeTo(50, 0.1);
+                $("#portfolio div").not("."+selectedClass).fadeOut();
+            setTimeout(function() {
+              $("."+selectedClass).fadeIn();
+              $("#portfolio").fadeTo(50, 1);
+            }, 500);
+                
+            });
+        });
+
+    </script>
+
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script>
+
+        function onClickBtnLike(event){
+            event.preventDefault();
+
+            const url = this.href;
+            const spanCount = this.querySelector('span.js-likes');
+            const icone = this.querySelector('i');
+
+            axios.get(url).then(function(response){
+                spanCount.textContent = response.data.likes;
+
+                if(icone.classList.contains('fa-solid')) icone.classList.replace('fa-solid','fa-regular');
+                else icone.classList.replace('fa-regular','fa-solid');
+            }).catch(function(error){
+                if(error.response.status === 403){
+                    window.alert("Vous devez être connecté");
+                }else{
+                    window.alert("Une erreur s'est produite, ");
+                }
+            });
+        }
+
+        document.querySelectorAll('a.js-like').forEach(function(link){
+            link.addEventListener('click', onClickBtnLike);
+        })
+    </script>
+
+  </body>
+</html>

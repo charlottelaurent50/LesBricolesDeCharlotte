@@ -1,0 +1,103 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{user.nom}} {{user.prenom}} {% endblock %}
+
+{% block compte %} active {% endblock %}
+{% block compte2 %} active {% endblock %}
+
+{% block style %}
+{% endblock %}
+
+
+{% block contenu %}
+{% if app.user.id == user.id or app.user.email == "charlottelau50@gmail.com" or app.user.email == "adminE5@admin.com" %}
+
+ <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading" id="top" style="background-image: url({{ asset( 'images/banniere_genre.png' ) }});">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content">
+                        <h2>Bonjour {{user.nom}} {{user.prenom}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+    	<section class="section" id="products">
+    <div class="liste">
+        <div class="container">
+            <div class="row">
+
+             <table class="descrPatron">
+                <tr>
+                    <td class="soustitre">Nom : </td>
+                    <td>{{user.nom}}</td>
+                </tr>
+                <tr>
+                    <td class="soustitre">Prénom : </td>
+                    <td>{{user.prenom}}</td>
+                </tr>
+                <tr>
+                    <td class="soustitre">Mensurations : </td>
+                    <td>{{user.mensuration}}</td>
+                </tr>
+             </table>
+
+        <a class="bouton" href="{{ path('userModifier', { 'id': user.id }) }}"> Modifier mon profil </a>
+
+            <div id="tit-crea">Patron(s) que vous aimez :</div>
+
+            {% for p in user.likes %}
+                <a class="lien" href="{{ path('patronConsulter', { 'id': p.patrons.id }) }}">
+                <div class="card">
+                    <div class="photoCard">
+                        <img src="{{ asset( p.patrons.image ) }}" alt="image">
+                    </div>
+                    <div class="descrCard">
+                        {{ p.patrons.nom }} </br>
+                    </a>
+                        <a href="{{ path('patronLike', { 'id': p.patrons.id }) }}" class="btn btn-link lien js-like">
+                            <span class="js-likes">{{ p.patrons.likes.count }}</span>
+                            {% if app.user and p.patrons.isLikedByUser(app.user) %}
+                                <i class="fa-solid fa-heart"></i>
+                            {% else %}
+                                <i class="fa-regular fa-heart"></i>
+                            {% endif %}
+                            <span class="js-label">Like</span>
+                        </a>
+                    </div>
+
+                </div>
+                
+            {% endfor %} 
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+{% else %}
+
+ <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading" id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content">
+                        <h2></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+Vous n'avez pas l'autorisation de consulter ce profil
+
+{% endif %}
+
+
+{% endblock %}

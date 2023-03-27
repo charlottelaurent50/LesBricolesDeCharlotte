@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ categorie.nom }}{% endblock %}
+
+{% block categorie %} active {% endblock %}
+
+{% block style %}
+{% endblock %}
+
+
+{% block contenu %}
+ <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading" id="top" style="background-image: url({{ asset( 'images/banniere_categorie.png' ) }});">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content">
+                        <h2>{{ categorie.nom }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+	<section class="section" id="products">
+        
+        <div class="container">
+            <div class="row">
+            {% for p in categorie.patrons %}
+                <a class="lien" href="{{ path('patronConsulter', { 'id': p.id }) }}">
+                <div class="card">
+                    <div class="photoCard">
+                        <img src="{{ asset( p.image ) }}" alt="image">
+                    </div>
+                    <div class="descrCard">
+                        {{ p.nom }}</br>
+                        <a href="{{ path('patronLike', { 'id': p.id }) }}" class="btn btn-link lien js-like">
+                            <span class="js-likes">{{ p.likes.count }}</span>
+                            {% if app.user and p.isLikedByUser(app.user) %}
+                                <i class="fa-solid fa-heart"></i>
+                            {% else %}
+                                <i class="fa-regular fa-heart"></i>
+                            {% endif %}
+                            <span class="js-label">Like</span>
+                        </a>
+                    </div>
+
+                </div>
+                </a>
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

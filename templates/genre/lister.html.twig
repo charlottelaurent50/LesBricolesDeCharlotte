@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Genre{% endblock %}
+{% block genre %} active {% endblock %}
+
+{% block style %}
+{% endblock %}
+
+
+
+{% block contenu %}
+ <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading" id="top" style="background-image: url({{ asset( 'images/banniere_genre.png' ) }});">
+    <div class="liste">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content">
+                        <h2>Les genres</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+
+    <!-- ***** Products Area Starts ***** -->
+
+	<section class="section" id="products">
+        <div class="container">
+            <div class="row">
+            {% for g in pGenre %}
+                <a class="lien" href="{{ path('genreConsulter', { 'id': g.id }) }}">
+                <div class="card">
+                    <div class="photoCard">
+                        <img src="{{ asset( g.image ) }}" alt="image">
+                    </div>
+                    <div class="descrCard">
+                        {{ g.nom }}
+                    </div>
+
+                </div>
+                </a>
+                
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

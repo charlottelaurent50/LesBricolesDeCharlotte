@@ -1,0 +1,130 @@
+controllers:
+    resource: ../src/Controller/
+    type: attribute
+
+route_accueil:
+    path: /accueil
+    controller: App\Controller\IndexController::accueil
+
+#livre
+
+livreConsulter:
+    path: /livre/consulter/{id}
+    controller: App\Controller\LivreController::consulterLivre
+
+livreLister:
+    path: /livre/lister
+    controller: App\Controller\LivreController::listerLivre
+
+livreAjouter:
+    path: /livre/ajouter
+    controller: App\Controller\LivreController::ajouterLivre
+    
+
+#categorie
+
+categorieConsulter:
+    path: /categorie/consulter/{id}
+    controller: App\Controller\CategorieController::consulterCategorie
+
+categorieLister:
+    path: /categorie/lister
+    controller: App\Controller\CategorieController::listerCategorie
+
+categorieAjouter:
+    path: /categorie/ajouter
+    controller: App\Controller\CategorieController::ajouterCategorie
+
+
+
+#genre
+
+genreConsulter:
+    path: /genre/consulter/{id}
+    controller: App\Controller\GenreController::consulterGenre
+
+genreLister:
+    path: /genre/lister
+    controller: App\Controller\GenreController::listerGenre
+
+genreAjouter:
+    path: /genre/ajouter
+    controller: App\Controller\GenreController::ajouterGenre
+
+
+
+
+#patron
+
+patronConsulter:
+    path: /patron/consulter/{id}
+    controller: App\Controller\PatronController::consulterPatron
+
+patronLister:
+    path: /patron/lister
+    controller: App\Controller\PatronController::listerPatron
+
+patronLike:
+    path: /patron/{id}/like
+    controller: App\Controller\PatronController::likePatron
+
+patronAjouter:
+    path: /patron/ajouter
+    controller: App\Controller\PatronController::ajouterPatron
+
+patronModifier:
+    path: /patron/modifier/{id}
+    controller: App\Controller\PatronController::modifierPatron
+
+
+
+#creation
+
+creationConsulter:
+    path: /creation/consulter/{id}
+    controller: App\Controller\CreationController::consulterCreation
+
+creationLister:
+    path: /creation/lister
+    controller: App\Controller\CreationController::listerCreation
+
+creationAjouter:
+    path: /creation/ajouter
+    controller: App\Controller\CreationController::ajouterCreation
+
+patronsCreationsAjouter:
+    path: /patrons_creations/ajouter
+    controller: App\Controller\PatronController::patronsCreations
+
+#compte
+
+app_logout:
+    path: /logout
+    methods: GET
+
+app_login:
+    path: /login
+    controller: App\Controller\LoginController::index
+
+inscription:
+    path: /inscription
+    controller: App\Controller\RegistrationController::register
+
+profil:
+    path: /profil/{id}
+    controller: App\Controller\UserController::consulterUser
+    
+userModifier:
+    path: /user/modifier/{id}
+    controller: App\Controller\UserController::modifierUser
+    
+userLister:
+    path: /user/lister
+    controller: App\Controller\UserController::listerUser
+
+
+
+
+admin:
+    path: /admin/index
+    controller: App\Controller\IndexController::admin

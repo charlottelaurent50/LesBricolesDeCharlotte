@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livres / Marques{% endblock %}
+{% block livre %} active {% endblock %}
+
+{% block style %}
+{% endblock %}
+
+
+{% block contenu %}
+ <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading" id="top" style="background-image: url({{ asset( 'images/banniere_livre.png' ) }});">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content">
+                        <h2>Les livres et marques</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+
+    <!-- ***** Products Area Starts ***** -->
+
+	<section class="section" id="products">
+    <div class="liste">
+        <div class="container">
+            <div class="row">
+            {% for l in pLivre %}
+                <a class="lien" href="{{ path('livreConsulter', { 'id': l.id }) }}">
+                <div class="card">
+                    <div class="photoCard">
+                        <img src="{{ asset( l.image ) }}" alt="image">
+                    </div>
+                    <div class="descrCard">
+                        {{ l.nom }}
+                    </div>
+
+                </div>
+                </a>
+                
+            {% endfor %}
+            </div>
+        </div>
+        </div>
+    </section>
+{% endblock %}

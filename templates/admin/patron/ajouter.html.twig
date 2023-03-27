@@ -1,0 +1,114 @@
+{% extends "baseAdmin.html.twig" %}
+{% block title %}Ajouter un patron{% endblock %}
+{% block addP %}colorlib-active{% endblock %}
+{% block style %}
+{% endblock %}
+{% block contenu %}
+ <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading" id="top" style="background-image: url({{ asset( 'images/banniere_patron.jpeg' ) }});">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content">
+                        <h2>Ajouter un patron</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+    <div class="cardA">
+        <div class="cardA-body">
+            <h4 class="cardA-title">Ajouter un patron</h4>
+            <p class="cardA-description">
+                Rentrez les informations du nouveau patron
+            </p>
+            <table class="table">
+            <td>
+            {{ form_start(form, 
+                {class : 'form-sample'}) 
+            }}
+            <div class="form-group">
+                <label for="nom">Nom</label>
+                  {{ form_row(form.nom, 
+                    {class : 'form-control'},
+                    {id : 'nom'}) }}
+            </div>
+            <div class="form-group">
+                <label for="taille">Ma taille</label>
+                  {{ form_row(form.maTaille, 
+                    {class : 'form-control'},
+                    {id : 'taille'}) }}
+            </div>
+            <div class="form-group">
+                <label for="metrage">Métrage</label>
+                  {{ form_row(form.metrage, 
+                    {class : 'form-control'},
+                    {id : 'metrage'}) }}
+            </div>
+            <div class="form-group">
+                <label for="accessoireProv">Accessoire</label>
+                  {{ form_row(form.accessoireProv, 
+                    {class : 'form-control'},
+                    {id : 'accessoireProv'}) }}
+            </div>
+            <div class="form-group">
+                <label for="tissu">Tissu conseillé</label>
+                  {{ form_row(form.tissu, 
+                    {class : 'form-control'},
+                    {id : 'tissu'}) }}
+            </div>
+            <div class="form-group">
+                <label for="remarque">Remarque</label>
+                  {{ form_row(form.remarque, 
+                    {class : 'form-control'},
+                    {id : 'remarque'}) }}
+            </div>
+            </td>
+            <td>
+            <div class="form-group">
+                <label for="image">Image</label>
+                  {{ form_row(form.image, 
+                    {class : 'form-control'},
+                    {id : 'image'}) }}
+            </div>
+            <div class="form-group">
+                <label for="decalque">Decalqué ?</label>
+                  {{ form_row(form.decalque, 
+                    {class : 'form-control'},
+                    {id : 'decalque'}) }}
+            <p>1 si oui, 0 sinon</p>
+            </div>
+            <div class="form-group">
+                <label for="taille_decalque">Taille décalqué</label>
+                  {{ form_row(form.taille_decalque, 
+                    {class : 'form-control'},
+                    {id : 'taille_decalque'}) }}
+            </div>
+            <div class="form-group">
+                <label for="genre">Genre</label>
+                  {{ form_row(form.genre, 
+                    {class : 'form-control'},
+                    {id : 'genre'}) }}
+            </div>
+            <div class="form-group">
+                <label for="categorie">Catégorie</label>
+                  {{ form_row(form.categorie, 
+                    {class : 'form-control'},
+                    {id : 'categorie'}) }}
+            </div>
+            <div class="form-group">
+                <label for="livre">Livre</label>
+                  {{ form_row(form.livre, 
+                    {class : 'form-control'},
+                    {id : 'livre'}) }}
+            </div>
+            <button type="submit" class="btn btn-primary mr-2">Valider</button>
+            </td>
+            </table>
+                    
+                {{ form_end(form) }}
+                </div>
+              </div>
+              
+{% endblock %}

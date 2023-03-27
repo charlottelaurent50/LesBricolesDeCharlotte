@@ -1,0 +1,86 @@
+{% extends "baseAdmin.html.twig" %}
+{% block title %}Ajouter une création{% endblock %}
+{% block userC %}colorlib-active{% endblock %}
+{% block style %}
+img{
+    height:80px;
+}
+.boxPat{
+    border : solid 1px #634d4d;
+    float:left;
+    margin:5px;
+    padding:5px
+}
+{% endblock %}
+{% block contenu %}
+ <!-- ***** Main Banner Area Start ***** -->
+    <div class="page-heading" id="top" style="background-image: url({{ asset( 'images/banniere_patron.jpeg' ) }});">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-content">
+                        <h2>Ajouter une création</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+    <div class="cardA">
+        <div class="cardA-body">
+            <p class="cardA-description">
+                Rentrez les informations de la nouvelle création </br>
+            </p>
+            {{ form_start(form, 
+                {class : 'form-sample'}) 
+            }}
+            <div class="form-group">
+                <label for="date">Date</label>
+                  {{ form_row(form.date, 
+                    {class : 'form-control'},
+                    {id : 'date'}) }}
+            </div>
+            <div class="form-group">
+                <label for="tissu">Tissu</label>
+                  {{ form_row(form.tissu, 
+                    {class : 'form-control'},
+                    {id : 'tissu'}) }}
+            </div>
+            <div class="form-group">
+                <label for="remarque">Remarque</label>
+                  {{ form_row(form.remarque, 
+                    {class : 'form-control'},
+                    {id : 'nremarqueom'}) }}
+            </div>
+            <div class="form-group">
+                <label for="lien_insta">Lien instagram</label>
+                  {{ form_row(form.lien_insta, 
+                    {class : 'form-control'},
+                    {id : 'lien_insta'}) }}
+            </div>
+            <div class="form-group">
+                <label for="image">Image</label>
+                  {{ form_row(form.image, 
+                    {class : 'form-control'},
+                    {id : 'image'}) }}
+            </div>
+
+            <div class="form-group">
+                <label for="patron">Patron</label>
+                  {{ form_row(form.patrons, 
+                    {class : 'form-control'},
+                    {id : 'patron'}) }}
+            </div>
+            <button type="submit" class="btn btn-primary mr-2">Valider</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+
+            {% for p in pPatron %}
+                <div class="boxPat">
+                    {{ p.nom }}
+                    <img src="{{ asset( p.image ) }}" alt="{{ p.image }}">
+                </div>
+            {% endfor %}
+{% endblock %}
