@@ -1,9 +1,10 @@
 # LesBricolesDeCharlotte
 
-## Domptes à utiliser :
+## Comptes à utiliser :
 
     Admin : adminE5@admin.com/MPadminE5
     Utilisateur : milaine@gmail.com/mpXavier
   
 ## Diagramme de classes :
-    cid:ii_lbxt8mjz0![image](https://user-images.githubusercontent.com/114416410/231718003-cdc4209a-4531-49a1-a432-c19556e2496b.png)
+    ![mcd](https://user-images.githubusercontent.com/114416410/231718376-660e365d-cec9-416e-aa8d-5cf0b35d528b.jpg)
+
