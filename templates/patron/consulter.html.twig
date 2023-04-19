@@ -107,8 +107,10 @@ td{
             {% endif %}
             <span class="js-label">Like</span>
         </a>
-        {% if is_granted('IS_AUTHENTICATED_FULLY') and app.user.email == "charlottelau50@gmail.com" or app.user.email == "adminE5@admin.com"%}
-        <a class="bouton" href="{{ path('patronModifier', { 'id': patron.id }) }}"> Modifier </a>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {% if app.user.email == "charlottelau50@gmail.com" or app.user.email == "adminE5@admin.com"%}
+                <a class="bouton" href="{{ path('patronModifier', { 'id': patron.id }) }}"> Modifier </a>
+            {% endif %}
         {% endif %}
         </div>
         <div id="tit-crea">Création(s) du patron : </div>
