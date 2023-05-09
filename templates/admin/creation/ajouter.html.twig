@@ -65,22 +65,9 @@ img{
                     {id : 'image'}) }}
             </div>
 
-            <div class="form-group">
-                <label for="patron">Patron</label>
-                  {{ form_row(form.patrons, 
-                    {class : 'form-control'},
-                    {id : 'patron'}) }}
-            </div>
             <button type="submit" class="btn btn-primary mr-2">Valider</button>
             {{ form_end(form) }}
         </div>
     </div>
 
-
-            {% for p in pPatron %}
-                <div class="boxPat">
-                    {{ p.nom }}
-                    <img src="{{ asset( p.image ) }}" alt="{{ p.image }}">
-                </div>
-            {% endfor %}
 {% endblock %}
