@@ -59,19 +59,9 @@ class CreationController extends AbstractController
         $form = $this->createForm(CreationType::class, $creation);
         
         $form->handleRequest($request);
-
-        $repository = $doctrine->getRepository(Patron::class);
-        $patron = $repository->findBy(
-            [],
-            ['nom' => 'ASC']
-        );
      
      
         if ($form->isSubmitted() && $form->isValid()) {
-            $patrons = $form->get('patrons')->getData();
-            foreach ($patrons as $patron) {
-                $creation->addPatron($patron);
-            }
 
             $creation = $form->getData();
      
@@ -84,7 +74,6 @@ class CreationController extends AbstractController
         else
         {
             return $this->render('admin/creation/ajouter.html.twig',[
-                'pPatron' => $patron,
                 'form' => $form->createView(),],);
     }
     }
