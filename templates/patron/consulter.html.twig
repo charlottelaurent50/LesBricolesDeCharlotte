@@ -83,10 +83,6 @@ td{
                 <tr> 
                     <td class="soustitre">Accessoire(s) : </td>
                     <td>
-                        {% for u in patron.utilise %}
-                            {{ u.accessoire.nom }}
-                        </br>
-                        {% endfor %}
                         {{ patron.accessoireProv }}
                     </td>
                 </tr>
@@ -113,20 +109,7 @@ td{
             {% endif %}
         {% endif %}
         </div>
-        <div id="tit-crea">Création(s) du patron : </div>
-        {% for c in patron.creations %}
-            <a class="lien" href="{{ path('creationConsulter', { 'id': c.id }) }}">
-                <div class="card">
-                    <div class="photoCard">
-                        <img src="{{ asset( c.image ) }}" alt="image">
-                    </div>
-                    <div class="descrCard">
-                        {{ c.date|date("d/m/Y") }}
-                    </div>
-                </div>
-            </a>
-                            
-        {% endfor %}
+       
 
 
 

@@ -72,34 +72,6 @@ td{
             </table>
 
         </div>
-
-        <div id="tit-crea">Patron(s) de la création :</div>
-
-        {% for p in creation.patrons %}
-            <a class="lien" href="{{ path('patronConsulter', { 'id': p.id }) }}">
-                <div class="card">
-                    <div class="photoCard">
-                        <img src="{{ asset( p.image ) }}" alt="image">
-                    </div>
-                    <div class="descrCard">
-                        {{ p.nom }} </br>
-                    <a href="{{ path('patronLike', { 'id': p.id }) }}" class="btn btn-link lien js-like">
-                            <span class="js-likes">{{ p.likes.count }}</span>
-                            {% if app.user and p.isLikedByUser(app.user) %}
-                                <i class="fa-solid fa-heart"></i>
-                            {% else %}
-                                <i class="fa-regular fa-heart"></i>
-                            {% endif %}
-                            <span class="js-label">Like</span>
-                        </a>
-                    </div>
-
-                </div>
-            </a>
-                
-        {% endfor %}
-
-
 </div>
 </div>
 {% endblock %}

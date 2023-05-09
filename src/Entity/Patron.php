@@ -45,9 +45,6 @@ class Patron
     #[ORM\ManyToOne(inversedBy: 'patrons')]
     private ?Genre $genre = null;
 
-    #[ORM\OneToMany(mappedBy: 'patron', targetEntity: Utilise::class)]
-    private Collection $utilise;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
@@ -57,14 +54,10 @@ class Patron
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $accessoireProv = null;
 
-    #[ORM\ManyToMany(targetEntity: Creation::class, inversedBy: 'patrons')]
-    private Collection $creations;
-
     public function __construct()
     {
         $this->utilise = new ArrayCollection();
         $this->likes = new ArrayCollection();
-        $this->creations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -192,35 +185,6 @@ class Patron
         return $this;
     }
 
-    /**
-     * @return Collection<int, Utilise>
-     */
-    public function getUtilise(): Collection
-    {
-        return $this->utilise;
-    }
-
-    public function addUtilise(Utilise $utilise): self
-    {
-        if (!$this->utilise->contains($utilise)) {
-            $this->utilise->add($utilise);
-            $utilise->setPatron($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUtilise(Utilise $utilise): self
-    {
-        if ($this->utilise->removeElement($utilise)) {
-            // set the owning side to null (unless already changed)
-            if ($utilise->getPatron() === $this) {
-                $utilise->setPatron(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getImage(): ?string
     {
@@ -294,27 +258,4 @@ class Patron
          return $this;
      }
 
-     /**
-      * @return Collection<int, Creation>
-      */
-     public function getCreations(): Collection
-     {
-         return $this->creations;
-     }
-
-     public function addCreation(Creation $creation): self
-     {
-         if (!$this->creations->contains($creation)) {
-             $this->creations->add($creation);
-         }
-
-         return $this;
-     }
-
-     public function removeCreation(Creation $creation): self
-     {
-         $this->creations->removeElement($creation);
-
-         return $this;
-     }
 }
