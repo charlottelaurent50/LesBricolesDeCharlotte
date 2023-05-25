@@ -83,10 +83,6 @@ td{
                 <tr> 
                     <td class="soustitre">Accessoire(s) : </td>
                     <td>
-                        {% for u in patron.utilise %}
-                            {{ u.accessoire.nom }}
-                        </br>
-                        {% endfor %}
                         {{ patron.accessoireProv }}
                     </td>
                 </tr>
@@ -107,24 +103,13 @@ td{
             {% endif %}
             <span class="js-label">Like</span>
         </a>
-        {% if is_granted('IS_AUTHENTICATED_FULLY') and app.user.email == "charlottelau50@gmail.com" or app.user.email == "adminE5@admin.com"%}
-        <a class="bouton" href="{{ path('patronModifier', { 'id': patron.id }) }}"> Modifier </a>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {% if app.user.email == "charlottelau50@gmail.com" or app.user.email == "adminE5@admin.com"%}
+                <a class="bouton" href="{{ path('patronModifier', { 'id': patron.id }) }}"> Modifier </a>
+            {% endif %}
         {% endif %}
         </div>
-        <div id="tit-crea">Création(s) du patron : </div>
-        {% for c in patron.creations %}
-            <a class="lien" href="{{ path('creationConsulter', { 'id': c.id }) }}">
-                <div class="card">
-                    <div class="photoCard">
-                        <img src="{{ asset( c.image ) }}" alt="image">
-                    </div>
-                    <div class="descrCard">
-                        {{ c.date|date("d/m/Y") }}
-                    </div>
-                </div>
-            </a>
-                            
-        {% endfor %}
+       
 
 
 

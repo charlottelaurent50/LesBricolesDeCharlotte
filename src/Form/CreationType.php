@@ -25,12 +25,7 @@ class CreationType extends AbstractType
             ->add('remarque', TextType::class, array('label'=>'  '))
             ->add('lien_insta', TextType::class, array('label'=>'  '))
             ->add('image', TextType::class, array('label'=>'  '))
-            ->add('patrons', EntityType::class, array(
-                'class'=>'App\Entity\Patron', 
-                'choice_label'=>'nom', 
-                'label'=>'  ',
-                'multiple' => true,
-                'expanded' => true,))
+            
         ;
     }
 
